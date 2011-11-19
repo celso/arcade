@@ -1,0 +1,8 @@
+mode "pal_768x288"
+  geometry   768 288 1024 65520 32
+  timings    67796 80 16 18 3 80 3
+  hsync low
+  vsync low
+  laced false
+endmode
+
