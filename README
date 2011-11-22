@@ -1,3 +1,54 @@
 This repo will host the scripts, patches and global configuration used in my arcade machine replica.
 
 For more info, head to: http://arrifana.org/blog/2008/05/fazer-uma-maquina-de-arcade/
+
+My hardware setup:
+------------------
+
+PC:
+---
+
+. Intel(R) Pentium(R) 4 CPU 3.00GHz
+. GeForce4 MX 440 AGP 8x]
+. TS32GSSD25-M, Transcend 32 GB, 2.5 Inch 44-Pin standard IDE/ATA disk
+. 2.5 Inch to 3.5 Inch IDE adaptor
+
+Arcade control panel
+--------------------
+
+All of my controls were bought at Ultimarc http://www.ultimarc.com/
+
+They're a bit expensive but they're really good, trust me. Here's the list of controls I have right now:
+
+. 1 Spintrak http://www.ultimarc.com/SpinTrak.htm (great to play Arkanoid)
+. 2 Mag-Stik plus joysticks http://www.ultimarc.com/controls.html
+. 11 classic pushbuttons, 1up, 2up, 3 buttons per joystick, lateral buttons to play pinball too.
+. 1 U-trak trackball http://www.ultimarc.com/trackball.html (great to play Marble Madness, or the use it as a mouse in UAE)
+. 1 I-pac PC interface to connect the buttons http://www.ultimarc.com/ipac1.html
+. 1 Coin Mech, properly working and tuned to Portuguese coins http://www.ultimarc.com/controls.html
+
+TV
+--
+
+The TV is an old Mitsai CRT tube. It has RGB lines active in the scart connector. A good TV will switch to RGB mode automatically when it detects signal, it will also save settings like sound volume and color adjustments.
+
+VGA to RGB adaptor
+------------------
+
+This adaptor converts the VGA signals from the GPU to the TV RGB lines. 
+
+The GeForce4 will be sending 15Khz ready modes throught the VGA connector so all it needs to do is to combine the v/h syncs to composite sync and adapt a few scart lines. I'm using the more reliable 74HC86 version. Here's the page with the schematics:
+
+http://members.optusnet.com.au/eviltim/scart.htm
+
+(pdf file under docs/, just in case the web colapses)
+
+Hardware notes:
+---------------
+
+The arcade cabinet is made of wood, so the resonance from the PC usage can make a lot of noise. Use silent fans and SSD or CF card based disks for best results.
+
+IDE adaptors are hard to find these days, bought mine at http://www.dealextreme.com/p/3-5-to-2-5-hdd-converter-727
+
+The old GeForce4 MX is key to my setup, as it supports native 15Khz TV modes under the VGA connector. Ebay is your friend.
+
