@@ -6,3 +6,9 @@ mode "pal_768x288"
   laced false
 endmode
 
+mode "512x288_50"
+  geometry   512 288   640 104832   32
+  timings    100786   65 8   20 3   47 3
+  hsync low
+  vsync low
+endmode
