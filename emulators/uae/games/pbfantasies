@@ -1,0 +1,52 @@
+PinballFntsiesAGA
+
+#
+# uaerc options
+# 
+
+kickstart_rom_file=/servers/uae/disks/ROMS/Kickstart v3.1 rev 40.68 (1993)(Commodore)(A1200)[!].zip
+joyport1=mouse
+kickshifter=false
+chipmem_size=4
+fastmem_size=8
+bogomem_size=0
+z3mem_size=0
+gfxcard_size=0
+log_illegal_mem=false
+cpu_type=68020
+cpu_24bit_addressing=false
+cpu_compatible=false
+cpu_cycle_exact=false
+cpu_speed=real
+cachesize=0
+chipset=aga
+immediate_blits=false
+x86.use_tsc=true
+collision_level=none
+show_leds=true
+
+#
+# useful keycodes:
+# 79 - arrow left     78 - arrow right    76 - arrow up   77 - arrow down    101 - right alt (fire)
+# 35 - f (left)   37 - h (right)   20 - t (up)   52 - v (down)   32 - a (fire)
+# 96 - left shift   97 - rigth shift
+# 
+# useful arcade codes:
+# 79 - 1up left  78 - 1up right  76 - 1up up  77 - 1up down  99 - 1up yellow 100 - 1up green  64 - 1up red
+# 34 - 2up left  36 - 2up rigth  19 - 2up up  35 - 2up down  32 - 2up yellow 33 - 2up green 16 - 2up red
+# 1 - 1up  2 - 2up  96 - pinball left 17 - pinball right
+#
+
+1 80
+2 81
+64 82
+16 83
+33 64
+96 102
+17 103
+34 1
+35 2
+36 3
+19 4
+99 68
+100 65

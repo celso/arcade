@@ -1,0 +1,28 @@
+Turrican
+
+#
+# uaerc options
+# 
+
+chipmem_size=4
+
+#
+# useful keycodes:
+# 79 - arrow left     78 - arrow right    76 - arrow up   77 - arrow down    101 - right alt (fire)
+# 35 - f (left)   37 - h (right)   20 - t (up)   52 - v (down)   32 - a (fire)
+# 96 - left shift   97 - rigth shift
+# 
+# useful arcade codes:
+# 79 - 1up left  78 - 1up right  76 - 1up up  77 - 1up down  99 - 1up yellow 100 - 1up green  64 - 1up red
+# 34 - 2up left  36 - 2up rigth  19 - 2up up  35 - 2up down  32 - 2up yellow 33 - 2up green 16 - 2up red
+# 1 - 1up  2 - 2up  96 - pinball left 17 - pinball right
+#
+
+99 101
+100 76
+32 100
+34 35
+36 37
+19 20
+33 20
+35 52
