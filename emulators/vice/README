@@ -1,0 +1,104 @@
+How to map the c64 keys and joysticks to my arcade panel
+--------------------------------------------------------
+
+My arcade panel emulates a basic usb keyboard. Each button, is a specific keyboard key.
+
+Since vice runs under X11, I can use a mix of xmodmap, "used to edit and display the keyboard modifier map and keymap table that are used by client applications to convert event keycodes into keysyms", and vice settings.
+
+If you need help with xmodmap codes, this screen may help:
+
+http://screenshots.debian.net/screenshots/x/xkeycaps/325_large.png
+
+Here's the X11 keycodes in hex and dec for my arcade panel:
+
+              hex  : dec   : description
+	      --------------------------
+1up button  :  0a  : 10
+2up button  :  0b  : 11
+r pinball   :  19  : 25
+l pinball   :  32  : 50
+
+
+1up left    :  64  :  100  : left
+1up right   :  66  :  102  : right
+1up up      :  62  :  98   : up
+1up down    :  68  :  104  : down
+1up yellow  :  25  :  37   : ctrl
+1up green   :  40  :  64   : left alt
+1up red     :  41  :  65   : space
+
+2up left    :  28  : 40    : d
+2up right   :  2a  : 42    : g
+2up up      :  1b  : 27    : r
+2up down    :  29  : 41    : f
+2up yellow  :  26  : 38    : a
+2up green   :  27  : 39    : s
+2up red     :  18  : 24    : q
+
+And these are the keycodes for my panel as vice sees them, after the default xmodmap has been aplied, so that you can use them with vicerc:
+
+1up button  : 49
+2up button  : 50
+r pinball   : 119
+l pinball   : 65505
+
+1up left    : 106
+1up right   : 108
+1up up      : 105
+1up down    : 109
+1up yellow  : 111
+1up green   : 112
+1up red     : 65307
+
+2up left    :  100
+2up right   :  103
+2up up      :  114
+2up down    :  102
+2up yellow  :  97
+2up green   :  115
+2up red     :  113
+
+As I said, each game is a combination of xmodmap mappings (special keys, ie: "r" to reset highscores maps to 1up red button) and vicerc settings for the joysticks (some games works differently, switch ports etc).
+
+Here's an example for the game Bubble Bobble:
+
+bubble_bobble.xmodmap:
+----------------------
+
+! 1up red button is the c64 escape key
+
+keycode 65 = Escape
+
+! 2up red button is the c64 enter key
+
+keycode 24 = Return
+
+! Pinball buttons mapped to n and y (to answer questions)
+
+keycode 25 = y
+keycode 50 = n
+
+bubble_bobble.vicerc:
+---------------------
+
+[C64]
+KeymapSymFile="x11_sym.vkm"
+KeymapPosFile="x11_pos.vkm"
+KeymapSymDeFile="x11_sym.vkm"
+KeySet1North=65362
+KeySet1East=65363
+KeySet1South=65364
+KeySet1West=65361
+KeySet1Fire=65507
+KeySet2North=114
+KeySet2East=103
+KeySet2South=102
+KeySet2West=100
+KeySet2Fire=97
+KeySetEnable=1
+JoyOpposite=0
+JoyDevice1=3
+JoyDevice2=2
+JoyDevice3=0
+JoyDevice4=0
+

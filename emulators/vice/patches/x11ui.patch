@@ -1,0 +1,41 @@
+*** /servers/sources/vice-2.2/src/arch/unix/x11/xaw/x11ui.c	Tue Nov 22 01:34:51 2011
+--- /tmp/x11ui.c	Tue Nov 22 01:35:06 2011
+***************
+*** 358,375 ****
+  
+      /* Default color settings (suggestions are welcome...) */
+      "*foreground:				     black",
+!     "*background:				     black",
+      "*borderColor:				     black",
+      "*internalBorderColor:			     black",
+!     "*TransientShell*Dialog.background:		     black",
+!     "*TransientShell*Label.background:		     black",
+!     "*TransientShell*Box.background:		     black",
+!     "*fileSelector.background:			     black",
+!     "*Command.background:			     black",
+!     "*Menubutton.background:		             black",
+!     "*Scrollbar.background:		             black",
+!     "*Form.background:				     black",
+!     "*Label.background:				     black",
+      "*Canvas.background:                             black",
+      "*driveTrack1.font:                          -*-helvetica-medium-r-*-*-12-*",
+      "*driveTrack2.font:                          -*-helvetica-medium-r-*-*-12-*",
+--- 358,375 ----
+  
+      /* Default color settings (suggestions are welcome...) */
+      "*foreground:				     black",
+!     "*background:				     gray80",
+      "*borderColor:				     black",
+      "*internalBorderColor:			     black",
+!     "*TransientShell*Dialog.background:		     gray80",
+!     "*TransientShell*Label.background:		     gray80",
+!     "*TransientShell*Box.background:		     gray80",
+!     "*fileSelector.background:			     gray80",
+!     "*Command.background:			     gray90",
+!     "*Menubutton.background:		             gray80",
+!     "*Scrollbar.background:		             gray80",
+!     "*Form.background:				     gray80",
+!     "*Label.background:				     gray80",
+      "*Canvas.background:                             black",
+      "*driveTrack1.font:                          -*-helvetica-medium-r-*-*-12-*",
+      "*driveTrack2.font:                          -*-helvetica-medium-r-*-*-12-*",
