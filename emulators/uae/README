@@ -1,4 +1,10 @@
-UAE, the Amiga Emulator, runs under the framebuffer device.
+UAE, the Amiga Emulator, runs under the libsvga device.
+
+I'm using a patched version of e-uae-0.8.29-WIP4. For more info check:
+
+http://www.rcdrummond.net/uae/
+
+The patch is ugly but works. It allows me to map each game keys to my own aracde control panel, using a per-game configuration file at runtime. See patches/
 
 start.sh is invoked by advmenu and does all the magic to run a game, this includes two main tasks:
 
