@@ -1,0 +1,7 @@
+Useful tools
+
+killuae uses the Linux input subsystem, reads the keyboard events, checks for the 1up+2up sequence and kills a few programs if it matches.
+
+killuae runs in the background when UAE or VICE are running.
+
+keycodes uses the linux input subsystem and it's useful to find about keycodes, as the suggests.
