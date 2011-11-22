@@ -1,0 +1,6 @@
+Various script files
+
+shot.sh
+-------
+
+Grabs a snapshot from the framebuffer (useful to get screenshots from UAE or VICE running sessions), converts it to png, optimum size to use with advmenu
