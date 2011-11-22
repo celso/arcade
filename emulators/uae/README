@@ -1,1 +1,11 @@
-UAE runs under the framebuffer device
+UAE, the Amiga Emulator, runs under the framebuffer device.
+
+start.sh is invoked by advmenu and does all the magic to run a game, this includes two main tasks:
+
+1. Copies the game to the WBStartup folder so that it starts when UAE runs
+2. Copies the keymaps and specific settings for each game in games/gameid
+3. Runs uae, boots workbench
+
+A few config files are included here as examples under game/*
+
+
