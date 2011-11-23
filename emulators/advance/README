@@ -4,4 +4,9 @@ http://advancemame.sourceforge.net/
 
 It's 2011 and imho this suite is still the best out there if you want to run your arcade replica under a Linux based setup.
 
+This is how I've compiled them:
 
+advancemenu-2.4.13/configure --prefix=/servers/mame/ --enable-svgalib
+advancemame-0.106.0/configure --prefix=/servers/mame --enable-svgalib --enable-alsa
+
+Yes, it's 2011 and I'm using libsvga. Guess what, works fine with my 15Khz PAL CRT and the Geforce4 GPU. Native drivers don't.
