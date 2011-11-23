@@ -1,0 +1,13 @@
+AdvanceMENU with svgalib needs a real tty available in order to run, which means it can't run from a normal startup script.
+
+In order to work around this and automate things, I used mingetty http://sourceforge.net/projects/mingetty/
+
+"mingetty is designed to be a minimal getty for the virtual terminals on the the workstation's monitor and keyboard. It has no support for serial lines."
+
+Just add this line to your /etc/inittab:
+
+1:2345:respawn:/sbin/mingetty --autologin root tty1
+
+mingetty will autologin the root user on startup, ussing the tty1 console, and run the /root/.bashrc script, which will initiate things and run advmenu.
+
+Just copy bashrc to /root/.bashrc

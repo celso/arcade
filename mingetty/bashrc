@@ -1,0 +1,36 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+export PS1='\h:\w\$ '
+umask 022
+
+export PATH=$PATH:/servers/mame/bin
+export ADVANCE=/servers/mame/config
+export TERM=linux
+
+# create audio devices. I hate udevd
+
+cd /dev
+mknod dsp c 14 3
+chown root:audio dsp
+chmod 0660 dsp
+mknod dsp1 c 14 19
+chown root:audio dsp1
+chmod 0660 dsp1
+mknod dsp2 c 14 35
+chown root:audio dsp2
+chmod 0660 dsp2
+mknod dsp3 c 14 51
+chown root:audio dsp3
+chmod 0660 dsp3
+mknod audio c 14 4
+chown root:audio audio
+chmod 0660 audio
+
+tty | grep tty1 && ( while [ 1 ]; do
+cd /servers/mame/logs
+/servers/mame/bin/advmenu --log
+if [ -f /tmp/quitloop ]
+then
+sleep 3600
+fi
+done; )
