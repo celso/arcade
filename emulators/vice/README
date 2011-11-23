@@ -1,3 +1,16 @@
+How does vice runs
+------------------
+
+Vice runs under X11, not framebuffer or libsvga.
+
+I wanted to make everything transparent to the arcade user and provice a smooth experience.
+
+I configured X11 to run with the framebuffer driver, which in turn provides 15Khz friendly modes. Check X11/xorg.conf
+
+On top of it I used fluxbox, a "very light on resources and easy to handle but yet full of features windowmanager".
+
+I configured fluxbox to run without any decoration, dock or menus, just a black placeholder to run vice in fullscreen. Check X11/fluxbox.init (which should go into /root/.fluxbox/init
+
 How to map the c64 keys and joysticks to my arcade panel
 --------------------------------------------------------
 
