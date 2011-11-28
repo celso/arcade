@@ -1,0 +1,22 @@
+! map left joystick keys only, can't use defaults : DO NOT EDIT
+keycode 100 = j
+keycode 102 = l
+keycode 98 = i
+keycode 104 = m
+keycode 37 = o
+keycode 64 = a
+
+! EDIT FROM HERE
+!
+! 1up red button is the c64 escape key
+
+keycode 65 = Escape
+
+! 2up red button is the c64 enter key
+
+keycode 24 = Return
+
+! Pinball buttons mapped to n and y (to answer questions)
+
+keycode 25 = h
+keycode 50 = r

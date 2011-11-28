@@ -1,0 +1,13 @@
+game.vicerc
+
+VICE options
+
+game.vkm
+
+VICE keymaps for each game
+
+game.xmodmap
+
+Keymaps for the X11 option - deprecated
+
+If game.extension is not found, default.extension will be used
