@@ -21,7 +21,7 @@ rmmod nvidia > /dev/null 2> /dev/null
 modprobe nvidiafb > /dev/null 2> /dev/null
 fbset 512x288_50 > /dev/null 2> /dev/null
 
-if [ -f config/$gid.vkw ]
+if [ -f config/$gid.vkm ]
 then
   vkm=$gid.vkm
 else
@@ -35,7 +35,7 @@ else
   vicerc=default.vicerc
 fi
 
-/servers/vice/bin/x64 -symkeymap $prefix/config/$vkm -config $prefix/config/$vicerc -autostart $prefix/roms/$rom > /dev/null 2>/dev/null
+/servers/vice/bin/x64 -VICIIfull -symkeymap $prefix/config/$vkm -config $prefix/config/$vicerc -autostart $prefix/roms/$rom >$prefix/vice.log 2>/dev/null
 
 clear > /dev/tty1
 
