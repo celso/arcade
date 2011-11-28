@@ -21,11 +21,11 @@ rmmod nvidia > /dev/null 2> /dev/null
 modprobe nvidiafb > /dev/null 2> /dev/null
 fbset 512x288_50 > /dev/null 2> /dev/null
 
-if [ -f config/$gid.xmodmap ]
+if [ -f config/$gid.vkw ]
 then
-  modmap=$gid.xmodmap
+  vkm=$gid.vkm
 else
-  modmap=default.xmodmap
+  vkm=default.vkm
 fi
 
 if [ -f config/$gid.vicerc ]
@@ -35,12 +35,8 @@ else
   vicerc=default.vicerc
 fi
 
-echo "#!/bin/sh" >/root/.xsession
-echo >>/root/.xsession
-echo "/usr/bin/xmodmap $prefix/config/$modmap" >>/root/.xsession
-echo "xsetroot -solid black -cursor $prefix/empty.cursor $prefix/empty.cursor" >>/root/.xsession
-echo "/servers/vice/bin/x64 -config $prefix/config/$vicerc -fullscreen -autostart $prefix/roms/$rom" >>/root/.xsession
-chmod 755 /root/.xsession
+/servers/vice/bin/x64 -symkeymap $prefix/config/$vkm -config $prefix/config/$vicerc -autostart $prefix/roms/$rom > /dev/null 2>/dev/null
 
-startx >/dev/null 2>> /servers/vice/vice.log
+clear > /dev/tty1
+
 sleep 3
