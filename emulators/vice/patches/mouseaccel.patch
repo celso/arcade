@@ -1,0 +1,90 @@
+diff -c -r vice-2.2.orig/src/arch/sdl/mousedrv.c vice-2.2/src/arch/sdl/mousedrv.c
+*** vice-2.2.orig/src/arch/sdl/mousedrv.c	Mon Sep 21 18:36:09 2009
+--- vice-2.2/src/arch/sdl/mousedrv.c	Mon Nov 28 02:10:10 2011
+***************
+*** 31,41 ****
+--- 31,45 ----
+  
+  #include <SDL/SDL.h>
+  
++ #include "cmdline.h"
++ #include "translate.h"
++ #include "resources.h"
+  #include "mouse.h"
+  #include "mousedrv.h"
+  #include "ui.h"
+  
+  int mouse_x, mouse_y;
++ static int mouse_accel = 2;
+  int mouse_accelx = 2, mouse_accely = 2;
+  
+  void mousedrv_mouse_changed(void)
+***************
+*** 43,58 ****
+      ui_check_mouse_cursor();
+  }
+  
+! int mousedrv_resources_init(void)
+  {
+      return 0;
+  }
+  
+  /* ------------------------------------------------------------------------- */
+  
+  int mousedrv_cmdline_options_init(void)
+  {
+!     return 0;
+  }
+  
+  /* ------------------------------------------------------------------------- */
+--- 47,84 ----
+      ui_check_mouse_cursor();
+  }
+  
+! static int set_mousedrv_accel(int v, void *param)
+  {
++     mouse_accel = v;
++     mouse_accelx = v;
++     mouse_accely = v;
+      return 0;
+  }
+  
++ static const resource_int_t resources_int[] = {
++     { "SDLMouseAccel", SDL_MOUSE_ACCEL, RES_EVENT_NO, NULL,
++       &mouse_accel, set_mousedrv_accel, NULL },
++     { NULL }
++ };
++ 
++ int mousedrv_resources_init(void)
++ {
++     return resources_register_int(resources_int);
++ }
++ 
+  /* ------------------------------------------------------------------------- */
+  
++ 
++ static const cmdline_option_t cmdline_options[] = {
++     { "-sdlmouseaccel", SET_RESOURCE, 1, NULL, NULL, "SDLMouseAccel", NULL,
++       USE_PARAM_STRING, USE_DESCRIPTION_STRING, IDCLS_UNUSED, IDCLS_UNUSED,
++       "<factor>", "Set mouse acceleration (default: 2)" },
++     { NULL }
++ };
++ 
+  int mousedrv_cmdline_options_init(void)
+  {
+!     return cmdline_register_options(cmdline_options);
+  }
+  
+  /* ------------------------------------------------------------------------- */
+diff -c -r vice-2.2.orig/src/arch/sdl/mousedrv.h vice-2.2/src/arch/sdl/mousedrv.h
+*** vice-2.2.orig/src/arch/sdl/mousedrv.h	Mon Sep 21 18:36:09 2009
+--- vice-2.2/src/arch/sdl/mousedrv.h	Mon Nov 28 02:09:58 2011
+***************
+*** 43,46 ****
+--- 43,48 ----
+  extern int mouse_x, mouse_y;
+  extern int mouse_accelx, mouse_accely;
+  
++ #define SDL_MOUSE_ACCEL	2
++ 
+  #endif
