@@ -1,0 +1,63 @@
+Compiling AdvanceMame on the Raspberry Pi
+-----------------------------------------
+
+Using Wheezy Raspbian 2012-09-18
+
+http://www.raspbian.org
+http://www.raspberrypi.org/downloads
+
+You'll need this:
+
+apt-get install alsa-oss libasound2-dev alsa-tools 
+
+A normal compilation usually dumps an "internal compiler error: in extract_insn" error.
+
+This seems to do with the gcc optimisation settings under the ARM platform and the fact that the rPi has few memory. To get around those, do this:
+
+First:
+
+./configure --enable-fb --enable-alsa --prefix=/servers/mame
+
+Then edit the Makefile and change this line to:
+
+CONF_CFLAGS_OPT= -fomit-frame-pointer -fno-merge-constants -Wall -Wno-sign-compare -Wno-unused
+
+This basically removes the -O2 flag which takes a lot more memory from gcc to compile.
+
+As you can see I use /servers to keep my compiled software.
+
+Compiling AdvanceMenu
+---------------------
+
+
+
+
+Overclocking your rPi
+---------------------
+
+Since 2012-08-16-wheezy-raspbian, it's possible to overclock your RaspberryPi. Read http://www.raspberrypi.org/archives/2008
+
+To run in turbo mode, run raspi-config, select the overclock option, then choose Turbo. Reboot. Done.
+
+
+Running the Raspberry Pi on a 15Khz screen
+------------------------------------------
+
+Normal CRT Arcade screens run at the 15Khz horizontal frequency.
+
+In order to use the Raspberry Pi with an old Arcade machine screen you can either use the composite video output signal, which has very low quality but provides 15Khz out of the box or, better, try an HDMI to VGA active adapter and then converting the analog 31Khz RGB signals to 15Khz using another converter or a Jamma adapter.
+
+I hate composite video so I went the hard (but better quality) way.
+
+I used a cheap "KanaaN HDMI to VGA Adapter Converter" I found on Amazon. Prices range from 5 to 20 Euro.
+
+In order to use these adaptors, depending on your VGA monitor or other factors, you may need to change the hdmi_mode setting in the config.txt file on the root of your SD card.
+
+For more information read this:
+
+http://elinux.org/RPi_Verified_Peripherals#Display_adapters
+
+Running AdvanceMame
+-------------------
+
+
