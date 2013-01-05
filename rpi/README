@@ -1,0 +1,124 @@
+PiMusE - RaspberryPi Multi-system Emulator
+
+1. Plan
+=======
+
+Build a Raspberry Pi boot image with out of the box, ready to use, optimized multi-system game emulation.
+
+2. Features
+===========
+
+ * Available as an SD card image, ready to burn and run.
+ * Easy to use, intuitive graphical menu system to browse and run games.
+ * Dedicated disk partition to store your roms and specific configurations.
+ * Optimal sound and graphics (settings and resolutions), boot options, overclocking settings.
+ * Optimized for performance and full speed gaming.
+ * Optimized to work with joystick/button panels and arcade cabinets (works with normal kbds too)
+   * Each button can be mapped to software/emulation functions or game controls.
+   * Ready to use with popular setups (ie: ipac, jpac and jamma conectors)
+   * Ready to use with 15Khz arcade CRTs (works with HDMI or VGA monitors taoo)
+ * Maintained database of game settings that work and run at full speed.
+ * Supported systems:
+   * Arcade
+   * Amiga
+ * Extensible framework. Frequent updates, more systems supported soon.
+
+3. Installation
+===============
+
+The first thing you need to do is to burn the SD image on a card.
+
+You need a 4GB or bigger card. Choose your SD card wisely, aim for quality and speed. Cheap SD cards tend to get corrupted over time, specially considering that the system will be halt and booted frequently. My card is a Kingston 16GB SDHC (SD4/16GB), never failed on me (others did) http://www.amazon.co.uk/Kingston-16GB-Class-Flash-Memory/dp/B0013AV9TW/ref=sr_1_1
+
+Here's a list of verified SD cards: http://elinux.org/RPi_SD_cards
+
+Follow these steps:
+
+1. Download the image from [URL here]
+
+2. Burn it using dd (example with osx)
+
+  diskutil list
+  diskutil unmountDisk /dev/disk3s1
+
+  dd if=arcade.img of=/dev/rdisk3 bs=1m
+
+  Make sure to check the correct SD card device first, and use the rdisk node. Check http://elinux.org/RPi_Easy_SD_Card_Setup for instructions on how to burn an image for each operating systems.
+
+3. You're ready to go, place the SD card on your Raspi and turn it on. There are some public domain roms in the distribution so you can try it pronto.
+
+4. New games
+============
+
+Game roms and specific configurations are stored in a special windows compatible partition called DATA (/data) on the SD card. This isolates the operation system, scripts, compiled software and some complexity from the stuff you'll want to do often: add new roms, map its keys and tune some parameters.
+
+Once you add new roms in the correct places, all you need to do is boot your system. On startup the relevant directories will be scanned for new roms and build a new menu system for the graphical interface. Again, the plan is to spare you from any boring or complex configuration task.
+
+Adding roms for different systems require different procedures.
+
+4.1 Arcade games
+================
+
+Arcade games are emulated using the great AdvanceMame software: http://advancemame.sourceforge.net
+
+Advmame was compiled with -O3 for best performance, with the correct drivers and the base settings were extensively tested and tuned for the best results with the Raspberry Pi.
+
+Hierarchy:
+
+/data/mame
+           \_ config
+           \_ roms
+           \_ snaps
+
+roms - MAME roms go in here, in .zip files (ie: 1943.zip)
+snaps - PNG files with screenshots of the game (ie: 1943.png). h: 256 w: 224 depth: 8. Hint: http://www.progettosnaps.net/snaps_en.html
+config - Contains inputmaps.rc:
+
+This file defines the mappings between your pad buttons and joysticks (which should be seen as a normal keyboard by the OS). You can change these mappings if you know what you're doing.
+
+For more information on the input_map command check this url: http://advancemame.sourceforge.net/doc-advmame.html#8.9.6
+
+DO NOT USE other than "input_map" advmame commands in this file, it is concatenated with other configuration files during startup
+
+If you need to know to which OS keyboard keys your arcade command correspond, this is a classic setup (from a ipac or jpac interface)
+
+https://raw.github.com/celso/arcade/master/docs/ipac_mappings.png
+
+For more about jpac or ipac, check:
+
+http://www.ultimarc.com/ipac1.html
+http://www.ultimarc.com/jpac.html
+
+4.2 Amiga games
+===============
+
+* Work in progress *
+
+/data/mame
+           \_ games
+           \_ maps
+           \_ snap
+
+* TBD *
+
+Advanced users
+==============
+
+In a nutshell: the system is configured with the IP 192.168.1.210, the user account and password are arcade/arcade. You can then sudo bash and tweak away.
+
+Some of the magic is inherited from other Linux based arcade projects I've done in the past, you can find more info at my github repo: http://github.com/celso/arcade
+
+If you have a genuine arcade cabinet and you want to use the Raspi with it, you may want to read this:
+
+http://arrifana.org/blog/2012/12/connection-a-raspberry-pi-to-an-old-15khz-arcade-monitor/
+
+If you need to backup your SD card, for some reason, here's a recipe:
+
+diskutil list
+diskutil unmountDisk /dev/disk7s1
+diskutil unmountDisk /dev/disk7s2
+dd if=/dev/rdisk7 of=arcade.img bs=1m count=3724
+diskutil unmountDisk /dev/disk7
+
+
+
