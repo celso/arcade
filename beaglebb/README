@@ -1,0 +1,27 @@
+Arcade system on the BeagleBone Black
+
+1. Plan
+=======
+
+Build a ready to use, optimized multi-system game emulation for the BeagleBone Black (aka, the Raspberry Pi is too slow and I can't stand SD card corruption every two weeks)
+
+2. Features
+===========
+
+ * Easy to use, intuitive graphical menu system to browse and run games.
+ * Optimal sound and graphics (settings and resolutions), boot options, overclocking settings.
+ * Optimized for performance and full speed gaming.
+ * Optimized to work with joystick/button panels and arcade cabinets (works with normal kbds too)
+   * Each button can be mapped to software/emulation functions or game controls.
+   * Ready to use with popular setups (ie: ipac, jpac and jamma conectors)
+   * Ready to use with 15Khz arcade CRTs (works with HDMI or VGA monitors taoo)
+ * Maintained database of game settings that work and run at full speed.
+ * Supported systems:
+   * Arcade
+   * Amiga
+ * Extensible framework. Frequent updates, more systems supported soon.
+
+3. Installation
+===============
+
+...
