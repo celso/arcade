@@ -1,4 +1,4 @@
-include adv_devices.rc:adv_games.rc
+include adv_devices.rc
 
 emulator "advmame" advmame "/servers/scripts/advmame.sh"
 emulator "uae" generic "/servers/scripts/uae.sh" "%f"

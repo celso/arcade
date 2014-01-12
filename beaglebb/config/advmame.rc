@@ -86,3 +86,4 @@ input_map[p2_up] keyboard[0,r]
 input_map[p2_down] keyboard[0,f]
 input_map[p2_left] keyboard[0,d]
 input_map[p2_right] keyboard[0,g]
+dkong/display_resize mixed

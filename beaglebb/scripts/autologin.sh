@@ -7,28 +7,32 @@ export PATH=$PATH:/servers/mame/bin
 export ADVANCE=/servers/config
 export TERM=linux
 
-tty | grep tty1 && (
+tty | grep tty1 > /dev/null && (
+  setterm -foreground black -cursor off -msg off
+  clear
   # sound volume reset
   amixer -q cset numid=1 200
   #   to see soundcard controls:
   #   amixer controls 
+  cp /servers/config/advmame.xml.good /servers/config/advmame.xml
 )
 
 # main loop
 
-tty | grep tty1 && ( while [ 1 ]; do
-  setterm -foreground black -clear -cursor off -msg off
-  clear
+tty | grep tty1 > /dev/null && ( while [ 1 ]; do
+  setterm -foreground black -cursor off -msg off
+  timelimit -q -T 10 -t 2 fbv --delay 1 --noinfo --enlarge -c -u /servers/config/bbbmuse.png
   cd /servers/logs
   touch /servers/config/advmame.xml
+  sleep 1
   nice -15 /servers/mame/bin/advmenu >/dev/null 2>/dev/null
   # nice -15 /servers/mame/bin/advmenu --log
+  timelimit -q -T 10 -t 2 fbv --delay 1 --noinfo --enlarge -c -u /servers/config/bbbmuse.png
   if [ -f /tmp/quitloop ]; then
     sleep 3600
   fi
   if [ -f /tmp/exec.sh ]; then
-    /tmp/exec.sh
+    /tmp/exec.sh >/dev/null 2>/dev/null
     rm -fr /tmp/exec.sh
   fi
-  sleep 1
 done; )

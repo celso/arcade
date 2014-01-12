@@ -45,7 +45,7 @@ Now log into your new Debian BBB and install a few packages first:
 ```
 apt-get update
 apt-get install gcc g++ make unzip psmisc
-apt-get install libsdl1.2-dev vim
+apt-get install libsdl1.2-dev vim timelimit
 apt-get install screen automake bzip2 patch
 ```
 
@@ -64,7 +64,7 @@ mkdir -p /servers/systems/amiga
 mkdir -p /servers/systems/mame
 ```
 
-Now copy scripts and config to /servers/
+Now copy scripts, config and fonts to /servers/
 
 ```
 cd /tmp
@@ -74,6 +74,8 @@ mv arcade-master/beaglebb/scripts /servers
 mv arcade-master/beaglebb/config /servers
 mv arcade-master/beaglebb/fonts /servers
 ```
+
+Empty /etc/motd
 
 Compiling Advmame
 -----------------

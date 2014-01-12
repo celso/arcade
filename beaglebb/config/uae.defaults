@@ -41,10 +41,8 @@ collision_level=playfields
 gfx_fullscreen_amiga=true
 
 # Set the screen dimensions
-gfx_width_windowed=768
-gfx_height_windowed=576
-gfx_width_fullscreen=768
-gfx_height_fullscreen=576
+gfx_width_fullscreen=800
+gfx_height_fullscreen=600
 gfx_center_horizontal=true
 gfx_center_vertical=true
 gfx_vsync=false
