@@ -1,0 +1,48 @@
+# video and sound options for advmame
+
+display_adjust none
+display_antialias yes
+display_artwork_backdrop yes
+display_artwork_bezel no
+display_artwork_crop yes
+display_artwork_overlay yes
+display_aspectx 4
+display_aspecty 3
+display_beam 1
+display_brightness 1
+display_buffer yes
+display_color auto
+display_expand 1.8
+display_flicker 0
+display_flipx no
+display_flipy no
+display_frameskip 1
+display_gamma 1
+display_intensity 1.5
+display_interlaceeffect none
+display_magnify auto
+display_mode auto
+display_pausebrightness 1
+display_resize fractional
+display_resizeeffect lq
+display_restore yes
+display_rgbeffect none
+display_rol no
+display_ror no
+display_scanlines no
+display_skipcolumns auto
+display_skiplines auto
+display_translucency yes
+display_vsync no
+
+sound_samplerate 11025
+sound_mode mono
+sound_latency 0.05
+# sound_samples yes
+sound_volume -3
+sync_fps auto
+sync_resample auto
+sync_speed 1
+sync_startuptime auto
+sync_turbospeed 3
+

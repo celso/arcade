@@ -1,0 +1,88 @@
+include adv_devices.rc:adv_inputmaps.rc:adv_videosound.rc
+
+dir_rom /servers/systems/mame/rom
+dir_snap /servers/systems/mame/snaps
+
+dir_artwork /servers/systems/mame/artwork
+dir_diff /servers/systems/mame/diff
+dir_hi /servers/systems/mame/hi
+dir_image /servers/systems/mame/image
+dir_inp /servers/systems/mame/inp
+dir_memcard /servers/systems/mame/memcard
+dir_nvram /servers/systems/mame/nvram
+dir_sample /servers/systems/mame/sample
+dir_sta /servers/systems/mame/sta
+
+input_hotkey yes
+
+input_steadykey no
+misc_bios default
+misc_cheat no
+misc_cheatfile cheat.dat
+misc_difficulty none
+misc_eventdebug no
+misc_eventfile event.dat
+misc_freeplay no
+misc_hiscorefile hiscore.dat
+misc_lang none
+misc_languagefile english.lng
+misc_mutedemo no
+misc_quiet yes
+misc_safequit no
+misc_smp no
+misc_timetorun 0
+record_sound no
+record_sound_time 15
+record_video no
+record_video_interleave 2
+record_video_time 15
+script_turbo while (event()) { toggle(kdb, 0b100); delay(100); } off(kdb, 0b100);
+script_video wait(!event()); set(kdb, 0);
+ui_color[help_other] 000000 808080
+ui_color[help_p1] 000000 ffff00
+ui_color[help_p2] 000000 00ff00
+ui_color[help_p3] 000000 ff0000
+ui_color[help_p4] 000000 00ffff
+ui_color[interface] 000000 ffffff
+ui_color[select] 000000 afffff
+ui_color[tag] 247ef0 ffffff
+ui_font auto
+ui_fontsize auto
+ui_helpimage auto
+ui_translucency 0.8
+input_idleexit 60
+
+pbaction/input_map[p1_button3] keyboard[0,w]
+pbaction/input_map[p1_button4] keyboard[0,q]
+pbaction/input_map[p1_button1] keyboard[0,z]
+pbaction/input_map[p1_button2] keyboard[0,i]
+cabalbl/input_map[p1_button2] keyboard[0,lcontrol]
+cabalbl/input_map[p2_button2] keyboard[0,a]
+cabalbl/input_map[p2_button3] keyboard[0,q]
+cabalbl/input_map[p1_button3] keyboard[0,space]
+cabal/input_map[p1_button2] keyboard[0,lcontrol]
+cabal/input_map[p2_button2] keyboard[0,a]
+cabal/input_map[p2_button3] keyboard[0,q]
+cabal/input_map[p1_button3] keyboard[0,space]
+1943/display_resize mixed
+input_map[p1_button1] keyboard[0,lshift]
+input_map[p1_button2] keyboard[0,space]
+input_map[p1_button3] keyboard[0,lalt]
+input_map[p1_button4] keyboard[0,lcontrol]
+input_map[p2_button1] keyboard[0,w]
+input_map[p2_button2] keyboard[0,q]
+input_map[p2_button3] keyboard[0,s]
+input_map[p2_button4] keyboard[0,a]
+input_map[coin1] keyboard[0,left] keyboard[0,z] or keyboard[0,2]
+input_map[ui_configure] keyboard[0,d] keyboard[0,z]
+input_map[ui_select] keyboard[0,1]
+input_map[ui_cancel] keyboard[0,1] keyboard[0,2]
+pbaction/display_resize mixed
+input_map[p1_up] keyboard[0,up]
+input_map[p1_down] keyboard[0,down]
+input_map[p1_left] keyboard[0,left]
+input_map[p1_right] keyboard[0,right]
+input_map[p2_up] keyboard[0,r]
+input_map[p2_down] keyboard[0,f]
+input_map[p2_left] keyboard[0,d]
+input_map[p2_right] keyboard[0,g]

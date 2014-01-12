@@ -1,0 +1,171 @@
+include adv_devices.rc:adv_games.rc
+
+emulator "advmame" advmame "/servers/scripts/advmame.sh"
+emulator "uae" generic "/servers/scripts/uae.sh" "%f"
+
+lock yes
+misc_exit none
+# sound_volume -40
+sound_foreground_begin none
+sound_foreground_end none
+sound_foreground_key none
+sound_foreground_start none
+sound_foreground_stop none
+sound_background_begin none
+sound_background_end none
+sound_background_start none
+sound_background_stop none
+sound_background_loop none
+# ui_startup /servers/mame/config/piarcade.png
+# ui_exit /servers/mame/config/piarcade.png
+advmame/idle_start 10 30
+
+config restore_at_exit
+event_assign enter space or lshift or lalt or lcontrol
+
+# ADVMAME
+
+emulator_roms "advmame" "/servers/systems/mame/rom"
+emulator_altss "advmame" "/servers/systems/mame/snaps"
+advmame/preview snap
+advmame/sort name
+advmame/mode list
+
+# UAE stuff
+
+emulator_roms "uae" "/servers/systems/amiga/maps"
+emulator_altss "uae" "/servers/systems/amiga/snaps"
+emulator_roms_filter "uae" ""
+
+uae/preview snap
+uae/sort name
+
+idle_screensaver 0 0
+
+ui_font /servers/fonts/Lat15-TerminusBoldVGA16.psf
+ui_fontsize 20 60
+ui_topbar no
+ui_bottombar no
+
+ui_color cursor 00ff00 005500
+# game icon broder
+ui_color backdrop 000000 000000
+
+# scroll bar
+ui_color grid 000000 000000
+ui_color icon ff00ff 000000
+
+ui_color bar ffffff 000000
+ui_color bar_tag ffffff 000000
+ui_color bar_hidden ffffff 000000
+
+# game title
+ui_color menu_item ffffff 000000
+ui_color menu_item_select ffff00 0000ff
+
+ui_color menu_tag ffffff 000000
+ui_color menu_tag_select ffffff 000000
+
+ui_color menu_hidden ffffff 000000
+ui_color menu_hidden_select ffffff 000000
+
+ui_color submenu_bar ffff00 0000ff
+ui_color submenu_item ffff00 0000ff
+ui_color submenu_item_select ffff00 0000ff
+ui_color submenu_hidden ffff00 0000ff
+ui_color submenu_hidden_select ffff00 0000ff
+
+ui_skiptop 13
+ui_skipbottom 13
+ui_skipleft 30
+ui_skipright 30
+ui_command "Shutdown" halt
+ui_command "Reset" reboot
+ui_menukey yes
+
+sort group
+menu_base 0
+menu_rel 2
+difficulty none
+display_orientation 
+merge differential
+mode list
+preview snap
+group_include "Amiga"
+group_include "Arcade"
+type_include "<undefined>"
+emulator_include "advmame"
+emulator_include "uae"
+group "<undefined>"
+group "Amiga"
+group "Arcade"
+type "<undefined>"
+emulator_attrib "advmame" missing exclude
+emulator_attrib "advmame" clone include
+emulator_attrib "advmame" bad include
+emulator_attrib "advmame" vector include
+emulator_attrib "advmame" vertical include
+emulator_attrib "advmame" neogeo include
+emulator_attrib "advmame" deco include
+emulator_attrib "advmame" playchoice include
+emulator_attrib "uae" missing exclude
+game "advmame/1942" "Arcade" "" 0 0 ""
+game "advmame/1943" "Arcade" "" 0 0 ""
+game "advmame/acpsx" "Arcade" "" 0 0 ""
+game "advmame/ar_bios" "Arcade" "" 0 0 ""
+game "advmame/atetris" "Arcade" "" 0 0 ""
+game "advmame/atluspsx" "Arcade" "" 0 0 ""
+game "advmame/atpsx" "Arcade" "" 0 0 ""
+game "advmame/bbmanw" "Arcade" "" 0 0 ""
+game "advmame/bublbobl" "Arcade" "" 0 0 ""
+game "advmame/cabal" "Arcade" "" 0 0 ""
+game "advmame/cabalbl" "Arcade" "" 0 0 ""
+game "advmame/cpzn1" "Arcade" "" 0 0 ""
+game "advmame/cpzn2" "Arcade" "" 0 0 ""
+game "advmame/crysbios" "Arcade" "" 0 0 ""
+game "advmame/cvs" "Arcade" "" 0 0 ""
+game "advmame/ddonpach" "Arcade" "" 0 0 ""
+game "advmame/decocass" "Arcade" "" 0 0 ""
+game "advmame/dkong" "Arcade" "" 0 0 ""
+game "advmame/galaga" "Arcade" "" 0 0 ""
+game "advmame/gng" "Arcade" "" 0 0 ""
+game "advmame/hng64" "Arcade" "" 0 0 ""
+game "advmame/konamigv" "Arcade" "" 0 0 ""
+game "advmame/konamigx" "Arcade" "" 0 0 ""
+game "advmame/kungfum" "Arcade" "" 0 0 ""
+game "advmame/macsbios" "Arcade" "" 0 0 ""
+game "advmame/megaman2" "Arcade" "" 0 0 ""
+game "advmame/megaplay" "Arcade" "" 0 0 ""
+game "advmame/megatech" "Arcade" "" 0 0 ""
+game "advmame/mpatrol" "Arcade" "" 0 0 ""
+game "advmame/neogeo" "Arcade" "" 0 0 ""
+game "advmame/nss" "Arcade" "" 0 0 ""
+game "advmame/pacland" "Arcade" "" 0 0 ""
+game "advmame/pang" "Arcade" "" 0 0 ""
+game "advmame/pbaction" "Arcade" "" 0 0 ""
+game "advmame/pbobblen" "Arcade" "" 0 0 ""
+game "advmame/pcktgal" "Arcade" "" 0 0 ""
+game "advmame/pgm" "Arcade" "" 0 0 ""
+game "advmame/playch10" "Arcade" "" 0 0 ""
+game "advmame/psarc95" "Arcade" "" 0 0 ""
+game "advmame/puckman" "Arcade" "" 61 1 ""
+game "advmame/puzznic" "Arcade" "" 0 0 ""
+game "advmame/rainbow" "Arcade" "" 0 0 ""
+game "advmame/rtype" "Arcade" "" 0 0 ""
+game "advmame/rtype2" "Arcade" "" 0 0 ""
+game "advmame/sboblbob" "Arcade" "" 0 0 ""
+game "advmame/shanghai" "Arcade" "" 0 0 ""
+game "advmame/shdancer" "Arcade" "" 0 0 ""
+game "advmame/shinobi" "Arcade" "" 0 0 ""
+game "advmame/silkworm" "Arcade" "" 0 0 ""
+game "advmame/skns" "Arcade" "" 0 0 ""
+game "advmame/stvbios" "Arcade" "" 0 0 ""
+game "advmame/taitofx1" "Arcade" "" 0 0 ""
+game "advmame/tnzs" "Arcade" "" 63 1 ""
+game "advmame/tps" "Arcade" "" 0 0 ""
+game "uae/GreatGianaSisters" "Amiga" "" 0 0 "GreatGianaSisters"
+game "uae/PinballDreams" "Amiga" "" 225 0 "PinballDreams"
+game "uae/PinballFantasies" "Amiga" "" 225 0 "PinballFantasies"
+game "uae/PinballIllusions" "Amiga" "" 225 0 "PinballIllusions"
+game "uae/ProjectX" "Amiga" "" 0 0 "ProjectX"
+game "uae/Superfrog" "Amiga" "" 0 0 "Superfrog"

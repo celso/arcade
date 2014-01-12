@@ -1,0 +1,30 @@
+# video and sound options for advmame
+
+device_color_bgr15 yes
+device_color_bgr16 yes
+device_color_bgr24 yes
+device_color_bgr32 yes
+device_color_bgr8 yes
+device_color_palette8 yes
+device_color_yuy2 yes
+device_keyboard sdl
+device_mouse raw 
+device_raw_mousetype[0] ps2
+device_raw_mousedev[0] /dev/input/mouse2
+device_raw_mousetype[1] ps2
+device_raw_mousedev[1] /dev/input/mouse0
+device_raw_mousedev[2] auto
+device_raw_mousedev[3] auto
+device_raw_mousetype[2] pnp
+device_raw_mousetype[3] pnp
+device_sound sdl
+device_video sdl
+
+device_video_cursor off
+device_video_doublescan yes
+device_video_fastchange yes
+device_video_interlace yes
+device_video_output fullscreen
+device_video_singlescan yes
+
+device_video_clock 10-80 / 30-60 / 55-100

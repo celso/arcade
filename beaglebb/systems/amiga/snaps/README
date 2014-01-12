@@ -1,0 +1,4 @@
+To get a screehshot, run
+
+fbgrab fb0
+mv fb0 GameName.png

@@ -1,0 +1,26 @@
+# this file is the template to generate the adv_inputmaps.rc.template file. You shouldn't need to touch this. Look at arcade_keymap.cfg instead
+
+input_map[coin1] keyboard[0,left] keyboard[0,z] or keyboard[0,2]
+input_map[ui_configure] keyboard[0,d] keyboard[0,z]
+input_map[ui_select] keyboard[0,1]
+input_map[ui_cancel] keyboard[0,1] keyboard[0,2]
+
+input_map[p1_button1] keyboard[0,lshift]
+input_map[p1_button2] keyboard[0,space]
+input_map[p1_button3] keyboard[0,lalt]
+input_map[p1_button4] keyboard[0,lcontrol]
+input_map[p2_button1] keyboard[0,w]
+input_map[p2_button2] keyboard[0,q]
+input_map[p2_button3] keyboard[0,s]
+input_map[p2_button4] keyboard[0,a]
+
+input_map[p1_left] keyboard[0,left]
+input_map[p1_right] keyboard[0,right]
+input_map[p1_up] keyboard[0,up]
+input_map[p1_down] keyboard[0,down]
+
+input_map[p2_left] keyboard[0,d]
+input_map[p2_right] keyboard[0,g]
+input_map[p2_up] keyboard[0,r]
+input_map[p2_down] keyboard[0,f]
+

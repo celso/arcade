@@ -44,10 +44,34 @@ Now log into your new Debian BBB and install a few packages first:
 
 ```
 apt-get update
-apt-get install gcc
-apt-get install libsdl1.2-dev
-apt-get install make
-apt-get install screen
+apt-get install gcc g++ make unzip psmisc
+apt-get install libsdl1.2-dev vim
+apt-get install screen automake bzip2 patch
+```
+
+Basic dir structures, scripts and configs
+-----------------------------------------
+
+Everything runs at /servers/
+
+Create the "arcade" user. Choose a password for it.
+
+```
+adduser arcade
+mkdir -p /servers/sources /servers/mame /servers/logs /servers/fonts
+mkdir -p /servers/snaps/mame
+mkdir -p /servers/roms/mame
+```
+
+Now copy scripts and config to /servers/
+
+```
+cd /tmp
+wget --no-check-certificate https://github.com/celso/arcade/archive/master.zip
+unzip master.zip
+mv arcade-master/beaglebb/scripts /servers
+mv arcade-master/beaglebb/config /servers
+mv arcade-master/beaglebb/fonts /servers
 ```
 
 Compiling Advmame
@@ -56,12 +80,13 @@ Compiling Advmame
 Download the latest version of [Advmame][2], untar the thing and:
 
 ```
-mkdir -p /servers/sources /serves/mame
 cd /servers/sources
 wget http://downloads.sourceforge.net/project/advancemame/advancemame/1.2/advancemame-1.2.tar.gz
 tar zxvf advancemame-1.2.tar.gz
 cd advancemame-1.2
 ./configure --prefix=/servers/mame
+make
+make install
 ```
 
 Then change the Makefile for maximum code optimization:
@@ -72,6 +97,146 @@ CONF_CFLAGS_OPT= -O8 -fomit-frame-pointer -fno-strict-aliasing -fno-stack-protec
 
 The open a `screen` and type `make`. Wait a few hours.
 
+Compile advmenu
+
+```
+cd /servers/sources
+wget http://downloads.sourceforge.net/project/advancemame/advancemenu/2.6/advancemenu-2.6.tar.gz
+tar zxvf advancemenu-2.6.tar.gz
+cd advancemenu-2.6
+./configure --prefix=/servers/mame
+make
+make install
+```
+
+Compiling UAE
+-------------
+
+Download [e-uae][4] and then apply [this patch][3] to the source tree. Make sure you have [automake1.7][4] installed. Then:
+
+```
+wget http://www.rcdrummond.net/uae/e-uae-0.8.29-WIP4/e-uae-0.8.29-WIP4.tar.bz2
+wget --no-check-certificate https://github.com/celso/arcade/raw/master/emulators/uae/patches/source.patch -O e-uae-0.8.29-WIP4.patch
+tar jxvf e-uae-0.8.29-WIP4.tar.bz2
+patch  -p0 < e-uae-0.8.29-WIP4.patch
+cd e-uae-0.8.29-WIP4
+./configure --with-sdl-gl --with-sdl --with-sdl-gfx --with-sdlsound --prefix=/servers/uae
+make
+make install
+```
+
+The patch allows UAE to read the $uaemapfile file (stored in an environment variable) which maps the Amiga keyboard layout used by the emulator with the real arcade keyboard buttons. The file looks like this:
+
+```
+arm:~# cat /tmp/uaekeymaps.txt
+99 101
+100 76
+32 100
+34 35
+36 37
+19 20
+33 20
+35 52
+```
+
+The default UAE configuration emulates joystick0 and joystick1 with the kbd3 and kbd2 keyboard keys, respectively. From the [UAE configuration docs][10], this means:
+
+```
+kbd2  - a joystick will be emulated using the cursor keys and the Right Ctrl
+          key or Right Alt key for the fire button.
+kbd3  - a joystick will be emulated using the keys T, B, F and H for up,
+          down, left and right, respectively, and the Left Alt key for the
+          fire button.
+```
+
+Take a look at [this image][9] for help on the codes.
+
+Installing WHDLoad
+------------------
+
+The Amiga emulation setup uses [WHDLoad][11] to run games and demos from the Amiga harddisk, instead of using floppy images.
+
+This is optional but you should buy a registered copy of WHLoad. It will support the project and the author, who did an amazing job with this tool, and will make your game loading much faster. To install your [WHDLoad][11] license just do:
+
+```
+cp ~/WHDLoad.key /servers/systems/amiga/disk/L/WHDLoad.key
+```
+
+Installing Mingetty
+-------------------
+
+AdvanceMENU needs a real tty available in order to run. In order to work around this and automate things on startup, [mingetty][6] is required.
+
+"mingetty is designed to be a minimal getty for the virtual terminals on the the workstation's monitor and keyboard. It has no support for serial lines."
+
+```
+apt-get install mingetty
+``
+
+Then add this line to your /etc/inittab (commenting the tty1 getty too):
+
+```
+# 1:2345:respawn:/sbin/getty 38400 tty1
+1:2345:respawn:/sbin/mingetty --autologin root tty1
+```
+
+mingetty will autologin the root user on startup, ussing the tty1 console, and run the /root/.bashrc script, which will initiate things and run advmenu.
+
+Final configuration
+-------------------
+
+As root:
+
+```
+cd ~root
+rm -fr .bashrc .profile
+ln -s /servers/scripts/autologin.sh .bashrc
+ln -s /servers/scripts/autologin.sh .profile
+```
+
+autologin.sh is the main loop script run by mingetty on startup. It sets the necessary environment variables, runs advmenu (for game selection) and looks for /tmp/exec.sh for execution, if present (the reason why this is needed is to workaround some BBB annoyances where advmenu doesn't free SDL correctly when it executes the emulator, causing the second to fail for missing access to video. This allows us to decouple both programs and kill advmenu before starting the emulator.).
+
+Now configure these BeagleBone Black boot options by editing the /boot/uboot/uEnv.txt file:
+
+```
+kms_force_mode=video=HDMI-A-1:800x600@60
+optargs=quiet capemgr.disable_partno=BB-BONELT-HDMI capemgr.enable_partno=BB-BONE-AUDI-01,BB-BONELT-HDMIN
+```
+
+The first line forces the 800x600 resolution for everything, including SDL.
+
+The second line assumes you're using a [Beaglebone Audio Cape][8] for analog audio output (which is my case). It disables the HDMI (video and audio), then enables the audio cape and HDMIN (HDMI without audio). If your monitor has video and audio, and you're not using the Audio Cape, then ignore the second line.
+
+
+Configuration files
+-------------------
+
+Configuration files live in the /servers/config directory. They are:
+
+ * /servers/config/arcade_keymap.cfg - arcade keymappings between your controls and all the emulators, this is the only file you should have to edit
+ * /servers/config/uae.defaults - UAE amiga emulator defaults
+ * /servers/config/advmame.rc - advmame defaults
+ * /servers/config/advmenu.rc - advmenu defaults
+
+
+Getting some extra space
+------------------------
+
+Some techniques to get extra space for a Debian installation.
+
+```
+rm -fr /var/cache/apt/archives/*.deb
+```
+
 
  [1]: http://elinux.org/BeagleBoardDebian#eMMC:_BeagleBone_Black
  [2]: http://advancemame.sourceforge.net
+ [3]: https://github.com/celso/arcade/blob/master/emulators/uae/patches/source.patch
+ [4]: http://www.rcdrummond.net/uae/e-uae-0.8.29-WIP4/e-uae-0.8.29-WIP4.tar.bz2
+ [5]: http://ftp.gnu.org/gnu/automake/automake-1.7.9.tar.gz
+ [6]: http://sourceforge.net/projects/mingetty/
+ [7]: http://elinux.org/Beagleboard:BeagleBoneBlack_HDMI
+ [8]: http://elinux.org/Beagleboard:BeagleBone_Audio
+ [9]: https://raw.github.com/celso/arcade/master/docs/amigalayout.png
+ [10]: https://github.com/GnoStiC/PUAE/blob/master/docs/configuration.txt
+ [11]: http://whdload.de

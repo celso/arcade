@@ -1,0 +1,104 @@
+#
+# more at: https://github.com/GnoStiC/PUAE/blob/master/docs/configuration.txt
+#          https://raw.github.com/celso/arcade/master/docs/amigalayout.png
+#
+config_description=
+config_info=
+unix.rom_path=
+unix.floppy_path=
+unix.hardfile_path=
+kickstart_rom_file=/servers/systems/amiga/roms/kickstart_31_a1200.zip
+kickstart_key_file=
+kickstart_ext_rom_file=
+cart_file=
+kickshifter=false
+chipmem_size=4
+fastmem_size=4
+bogomem_size=2
+z3mem_size=0
+gfxcard_size=0
+log_illegal_mem=false
+cpu_type=68ec020
+# cpu_type=68000
+cpu_24bit_addressing=false
+cpu_compatible=true
+cpu_cycle_exact=false
+cpu_speed=max
+cachesize=0
+comp_nf=false
+compforcesettings=false
+comp_trustbyte=indirect
+comp_trustword=indirect
+comp_trustlong=indirect
+# chipset=ecs_agnus
+chipset=ecs
+ntsc=false
+immediate_blits=true
+x86.use_tsc=true
+collision_level=playfields
+
+# Necessary to get the relative coordinates from mouse emulated with wiimote
+gfx_fullscreen_amiga=true
+
+# Set the screen dimensions
+gfx_width_windowed=768
+gfx_height_windowed=576
+gfx_width_fullscreen=768
+gfx_height_fullscreen=576
+gfx_center_horizontal=true
+gfx_center_vertical=true
+gfx_vsync=false
+
+# Set true to adapt the Amiga screen to Wii screen 
+gfx_correct_aspect=false
+
+# Set the screen correct % ratio when gfx_correct_aspect is true - possible values 80-100
+gfx_correct_ratio=93
+
+# Set the framerate
+gfx_framerate=1
+
+sound_output=normal
+sound_channels=mono
+sound_interpol=none
+sound_frequency=11025
+sound_latency=200
+floppy0type=0
+floppy1type=-1
+floppy2type=-1
+floppy3type=-1
+floppy0=
+floppy1=
+floppy2=
+floppy3=
+floppy_speed=100
+filesystem2=rw,DH0:uaewb:/servers/systems/amiga/disk,-10
+kbd_lang=us
+joyport0=kbd3
+joyport1=kbd2
+input.config=0
+input.mouse_speed=300
+sdl.map_raw_keys=true
+scsi=false
+scsi_device=IODVDServices/0
+bsdsocket_emu=false
+serial_on_demand=false
+parallel_on_demand=false
+
+#
+# Arcade/Amiga keyboard mapping defaults
+# help at: https://raw.github.com/celso/arcade/master/docs/amigalayout.png
+#
+
+arcade_p1_left 79
+arcade_p1_right 78
+arcade_p1_up 76
+arcade_p1_down 77
+arcade_p1_button1 101
+arcade_p2_left 35
+arcade_p2_right 37
+arcade_p2_up 20
+arcade_p2_down 53
+arcade_p2_button1 100
+arcade_lbutton 96
+arcade_rbutton 97
