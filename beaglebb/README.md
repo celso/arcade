@@ -171,7 +171,7 @@ AdvanceMENU needs a real tty available in order to run. In order to work around 
 
 ```
 apt-get install mingetty
-``
+```
 
 Then add this line to your /etc/inittab (commenting the tty1 getty too):
 
