@@ -59,8 +59,9 @@ Create the "arcade" user. Choose a password for it.
 ```
 adduser arcade
 mkdir -p /servers/sources /servers/mame /servers/logs /servers/fonts
-mkdir -p /servers/snaps/mame
-mkdir -p /servers/roms/mame
+mkdir -p /servers/systems
+mkdir -p /servers/systems/amiga
+mkdir -p /servers/systems/mame
 ```
 
 Now copy scripts and config to /servers/
@@ -125,21 +126,52 @@ make
 make install
 ```
 
-The patch allows UAE to read the $uaemapfile file (stored in an environment variable) which maps the Amiga keyboard layout used by the emulator with the real arcade keyboard buttons. The file looks like this:
+The patch allows UAE to read the $uaemapfile file (stored in an environment variable) which is used to remap the Amiga keyboard layout to work the arcade controllers. This allows to have per-game mappings and a global and unique key configuration file for the arcade machine.
+
+Your arcade controls
+--------------------
+
+I've worked hard on my scripting-fu to make sure that the only file you should need to edit to adapt your arcade controls to the various emulators is [/servers/config/arcade_keymaps.cfg][12]. Here's how it looks:
 
 ```
-arm:~# cat /tmp/uaekeymaps.txt
-99 101
-100 76
-32 100
-34 35
-36 37
-19 20
-33 20
-35 52
+arcade_p1_left,left,79
+arcade_p1_right,right,78
+arcade_p1_up,up,76
+arcade_p1_down,down,77
+
+arcade_p2_left,d,34
+arcade_p2_right,g,36
+arcade_p2_up,r,19
+arcade_p2_down,f,35
+
+arcade_p1_button1,lshift,96
+arcade_p1_button2,space,64
+arcade_p1_button3,lalt,100
+arcade_p1_button4,lcontrol,99
+
+arcade_p2_button1,w,17
+arcade_p2_button2,q,16
+arcade_p2_button3,s,33
+arcade_p2_button4,a,32
+
+arcade_p1_select,1,1
+arcade_p2_select,2,2
+
+arcade_lbutton,z,49
+arcade_rbutton,i,23
 ```
 
-The default UAE configuration emulates joystick0 and joystick1 with the kbd3 and kbd2 keyboard keys, respectively. From the [UAE configuration docs][10], this means:
+So what does this means?
+
+It means that the arcade_p2_left (player 2 joystick, left) maps to the d key (my ipac configuration [see this][13]), which is UAE code 34 in decimal (see [this UAE table][9]).
+
+Suppose your arcade controls keyboard adapter maps the player 2 joystick left to key j instead. Then this line should be:
+
+```
+arcade_p2_left,j,38
+```
+
+Please note that the default UAE configuration emulates joystick0 and joystick1 with the kbd3 and kbd2 keyboard keys, respectively. From the [UAE configuration docs][10], this means:
 
 ```
 kbd2  - a joystick will be emulated using the cursor keys and the Right Ctrl
@@ -240,3 +272,5 @@ rm -fr /var/cache/apt/archives/*.deb
  [9]: https://raw.github.com/celso/arcade/master/docs/amigalayout.png
  [10]: https://github.com/GnoStiC/PUAE/blob/master/docs/configuration.txt
  [11]: http://whdload.de
+ [12]: https://github.com/celso/arcade/blob/master/beaglebb/config/arcade_keymap.cfg
+ [13]: https://raw.github.com/celso/arcade/master/docs/ipac_mappings.png
