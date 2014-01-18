@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo $* > /tmp/script.log
+echo $0 $* > /tmp/script.log
 
 if [ "$1" == "" ]
 then
@@ -19,7 +19,7 @@ fi
 
 # keymaps substitution
 
-cat /servers/config/arcade_keymap.cfg |egrep "^[a-z0-9\_]+\,[a-z0-9]+\,[0-9]+\$" > /tmp/arcade_keymap.cfg
+cat /servers/config/arcade_keymap.cfg |egrep "^[a-z0-9\_]+\,[a-z0-9]+\,[0-9]+,[0-9]+\$" > /tmp/arcade_keymap.cfg
 
 cp /servers/config/adv_inputmaps.rc.template /tmp/adv_inputmaps.rc
 

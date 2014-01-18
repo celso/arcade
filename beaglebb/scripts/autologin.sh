@@ -11,7 +11,8 @@ tty | grep tty1 > /dev/null && (
   setterm -foreground black -cursor off -msg off
   clear
   # sound volume reset
-  amixer -q cset numid=1 200
+  amixer -q sset "PCM",0 200
+  amixer -q sset "HP DAC",0 118
   #   to see soundcard controls:
   #   amixer controls 
   cp /servers/config/advmame.xml.good /servers/config/advmame.xml
@@ -35,4 +36,6 @@ tty | grep tty1 > /dev/null && ( while [ 1 ]; do
     /tmp/exec.sh >/dev/null 2>/dev/null
     rm -fr /tmp/exec.sh
   fi
+# cleanup
+  rm -fr /tmp/ide.hdd /tmp/vice.log /tmp/vice.vkm /tmp/vicerc
 done; )

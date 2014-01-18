@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo $* > /tmp/script.log
+echo $0 $* > /tmp/script.log
 
 if [ "$1" == "" ]
 then
@@ -41,7 +41,7 @@ cat /tmp/uaekeymaps.txt >> /tmp/uaekeymapdefaults.txt
 
 # Global arcade_* keymaps substitution
 
-cat /servers/config/arcade_keymap.cfg |egrep "^[a-z0-9\_]+\,[a-z0-9]+\,[0-9]+\$" > /tmp/arcade_keymap.cfg
+cat /servers/config/arcade_keymap.cfg |egrep "^[a-z0-9\_]+\,[a-z0-9]+\,[0-9]+,[0-9]+\$" > /tmp/arcade_keymap.cfg
 
 for f in `cat /tmp/arcade_keymap.cfg`
 do
