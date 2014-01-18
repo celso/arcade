@@ -2,6 +2,7 @@ include adv_devices.rc
 
 emulator "advmame" advmame "/servers/scripts/advmame.sh"
 emulator "uae" generic "/servers/scripts/uae.sh" "%f"
+emulator "vice" generic "/servers/scripts/vice.sh" "%f"
 
 lock yes
 misc_exit none
@@ -16,8 +17,8 @@ sound_background_end none
 sound_background_start none
 sound_background_stop none
 sound_background_loop none
-# ui_startup /servers/mame/config/piarcade.png
-# ui_exit /servers/mame/config/piarcade.png
+ui_startup /servers/config/bbbmuse.png
+ui_exit /servers/config/bbbmuse.png
 advmame/idle_start 10 30
 
 config restore_at_exit
@@ -39,6 +40,15 @@ emulator_roms_filter "uae" ""
 
 uae/preview snap
 uae/sort name
+
+# Vice stuff
+
+emulator_roms "vice" "/servers/systems/c64/roms"
+emulator_altss "vice" "/servers/systems/c64/snaps"
+emulator_roms_filter "vice" ""
+
+vice/preview snap
+vice/sort name
 
 idle_screensaver 0 0
 
@@ -93,12 +103,15 @@ mode list
 preview snap
 group_include "Amiga"
 group_include "Arcade"
+group_include "C64"
 type_include "<undefined>"
 emulator_include "advmame"
 emulator_include "uae"
+emulator_include "vice"
 group "<undefined>"
 group "Amiga"
 group "Arcade"
+group "C64"
 type "<undefined>"
 emulator_attrib "advmame" missing exclude
 emulator_attrib "advmame" clone include
@@ -109,6 +122,7 @@ emulator_attrib "advmame" neogeo include
 emulator_attrib "advmame" deco include
 emulator_attrib "advmame" playchoice include
 emulator_attrib "uae" missing exclude
+emulator_attrib "vice" missing exclude
 game "advmame/1942" "Arcade" "" 0 0 ""
 game "advmame/1943" "Arcade" "" 0 0 ""
 game "advmame/acpsx" "Arcade" "" 0 0 ""
@@ -159,13 +173,17 @@ game "advmame/shdancer" "Arcade" "" 0 0 ""
 game "advmame/shinobi" "Arcade" "" 0 0 ""
 game "advmame/silkworm" "Arcade" "" 0 0 ""
 game "advmame/skns" "Arcade" "" 0 0 ""
+game "advmame/slyspy" "Arcade" "" 0 0 ""
 game "advmame/stvbios" "Arcade" "" 0 0 ""
 game "advmame/taitofx1" "Arcade" "" 0 0 ""
 game "advmame/tnzs" "Arcade" "" 63 1 ""
 game "advmame/tps" "Arcade" "" 0 0 ""
-game "uae/GreatGianaSisters" "Amiga" "" 0 0 "GreatGianaSisters"
-game "uae/PinballDreams" "Amiga" "" 225 0 "PinballDreams"
-game "uae/PinballFantasies" "Amiga" "" 225 0 "PinballFantasies"
-game "uae/PinballIllusions" "Amiga" "" 225 0 "PinballIllusions"
+game "uae/GreatGianaSisters" "Amiga" "" 0 0 "Great Giana Sisters"
+game "uae/PinballDreams" "Amiga" "" 225 0 "Pinball Dreams"
+game "uae/PinballFantasies" "Amiga" "" 225 0 "Pinball Fantasies"
+game "uae/PinballIllusions" "Amiga" "" 225 0 "Pinball Illusions"
 game "uae/ProjectX" "Amiga" "" 0 0 "ProjectX"
 game "uae/Superfrog" "Amiga" "" 0 0 "Superfrog"
+game "vice/montyontherun_ide64" "C64" "" 0 0 "Monty On the Run"
+game "vice/rick2_ide64" "C64" "" 0 0 "Rick Dangerous 2"
+game "vice/slyspy_ide64" "C64" "" 0 0 "Sly Spy"
