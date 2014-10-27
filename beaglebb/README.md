@@ -17,7 +17,7 @@ Features
  * Optimized to work with joystick/button panels and arcade cabinets (works with normal kbds too)
    * Each button can be mapped to software/emulation functions or game controls.
    * Ready to use with popular setups (ie: ipac, jpac and jamma conectors)
-   * Ready to use with 15Khz arcade CRTs (works with HDMI or VGA monitors taoo)
+   * Ready to use with 15Khz arcade CRTs (works with HDMI or VGA monitors too)
  * Maintained database of game settings that work and run at full speed.
  * Supported systems:
    * Arcade
